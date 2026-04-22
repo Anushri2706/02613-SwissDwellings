@@ -2,6 +2,7 @@ from os.path import join
 import sys
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def load_data(load_dir, bid):
@@ -44,6 +45,7 @@ def summary_stats(u, interior_mask):
 if __name__ == '__main__':
     # Load data
     LOAD_DIR = '/dtu/projects/02613_2025/data/modified_swiss_dwellings/'
+    OUT_DIR = "simulation_outputs"
     with open(join(LOAD_DIR, 'building_ids.txt'), 'r') as f:
         building_ids = f.read().splitlines()
 
@@ -76,3 +78,13 @@ if __name__ == '__main__':
     for bid, u, interior_mask in zip(building_ids, all_u, all_interior_mask):
         stats = summary_stats(u, interior_mask)
         print(f"{bid},", ", ".join(str(stats[k]) for k in stat_keys))
+
+        # save the image from the simulation
+        plt.figure(figsize = (6, 6))
+        image = plt.imshow(u[1:-1, 1:-1], cmap = "hot", origin = "lower")
+        plt.colorbar(image, label = "Temperature (°C)")
+        plt.title(f"Building {bid} simulation")
+        plt.axis("off")
+        plt.tight_layout()
+        plt.savefig(join(OUT_DIR, f"{bid}_simulation.png"), dpi = 200, bbox_inches = "tight")
+        plt.close()
