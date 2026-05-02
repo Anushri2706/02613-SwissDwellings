@@ -1,0 +1,2 @@
+Loaded module: cuda/11.8
+/zhome/83/e/168665/.lsbatch/1777464951.28326038.shell: line 20: 2329231 Killed                  python3 -u task8.py $N > full_results_cuda_$LSB_JOBID.csv

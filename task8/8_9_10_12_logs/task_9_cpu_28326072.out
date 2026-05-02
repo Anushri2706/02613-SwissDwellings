@@ -1,0 +1,59 @@
+No GPU on this node, CUDA module not loaded
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28326072: <jacobi_cpu> in cluster <dcc> Done
+
+Job <jacobi_cpu> was submitted from host <n-62-12-19> by user <nikry> in cluster <dcc> at Wed Apr 29 14:20:09 2026
+Job was executed on host(s) <n-62-31-23>, in queue <hpc>, as user <nikry> in cluster <dcc> at Wed Apr 29 14:20:10 2026
+</zhome/83/e/168665> was used as the home directory.
+</zhome/83/e/168665/02613-SwissDwellings> was used as the working directory.
+Started at Wed Apr 29 14:20:10 2026
+Terminated at Wed Apr 29 14:20:30 2026
+Results reported at Wed Apr 29 14:20:30 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J jacobi_cpu
+#BSUB -q hpc
+#BSUB -n 1
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 1:00
+#BSUB -o logs/task_9_cpu_%J.out
+#BSUB -e logs/task_9_cpu_%J.err
+ 
+# === Number of floorplans to process ===
+N=2
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613_2026
+# Run, redirect CSV to file, timing goes to stderr -> .err log
+python3 -u ref_simulate.py $N > task_9_results_cpu_$LSB_JOBID.csv
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   19.47 sec.
+    Max Memory :                                 40 MB
+    Average Memory :                             40.00 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               4056.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   20 sec.
+    Turnaround time :                            21 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/task_9_cpu_28326072.err> for stderr output of this job.
+

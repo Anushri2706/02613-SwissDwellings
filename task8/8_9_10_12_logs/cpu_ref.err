@@ -1,0 +1,7 @@
+
+--- Timing (reference) ---
+N floorplans:       40
+Total time:         452.536 s
+Mean per floorplan: 11.313 s
+Min / Max:          3.078 / 33.045 s
+Est. full dataset (4571): 51710.5 s = 861.8 min = 14.36 h

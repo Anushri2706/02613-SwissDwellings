@@ -1,0 +1,8 @@
+Loaded module: cuda/11.8
+
+--- Timing (Numba CUDA) ---
+N floorplans:       40
+Total time:         54.184 s
+Mean per floorplan: 1.355 s
+Min / Max:          1.336 / 1.373 s
+Est. full dataset (4571): 6191.8 s = 103.2 min = 1.72 h

@@ -1,0 +1,62 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28326078: <jacobi_cupy> in cluster <dcc> Done
+
+Job <jacobi_cupy> was submitted from host <n-62-12-19> by user <nikry> in cluster <dcc> at Wed Apr 29 14:22:01 2026
+Job was executed on host(s) <4*n-62-18-9>, in queue <gpua100>, as user <nikry> in cluster <dcc> at Wed Apr 29 21:05:15 2026
+</zhome/83/e/168665> was used as the home directory.
+</zhome/83/e/168665/02613-SwissDwellings> was used as the working directory.
+Started at Wed Apr 29 21:05:15 2026
+Terminated at Wed Apr 29 21:05:32 2026
+Results reported at Wed Apr 29 21:05:32 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J jacobi_cupy
+#BSUB -q gpua100
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 0:50
+#BSUB -o logs/cupy_%J.out
+#BSUB -e logs/cupy_%J.err
+
+# === Number of floorplans to process ===
+N=2
+
+
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613_2026
+
+# Run, redirect CSV to file, timing goes to stderr -> .err log
+python3 -u task9_cupy.py $N > results_cupy_$LSB_JOBID.csv
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   11.81 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   17 sec.
+    Turnaround time :                            24211 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/cupy_28326078.err> for stderr output of this job.
+

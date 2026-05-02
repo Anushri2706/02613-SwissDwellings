@@ -1,0 +1,63 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28326038: <full_jacobi_cuda> in cluster <dcc> Exited
+
+Job <full_jacobi_cuda> was submitted from host <n-62-12-19> by user <nikry> in cluster <dcc> at Wed Apr 29 14:15:51 2026
+Job was executed on host(s) <4*n-62-20-2>, in queue <gpuv100>, as user <nikry> in cluster <dcc> at Wed Apr 29 14:17:55 2026
+</zhome/83/e/168665> was used as the home directory.
+</zhome/83/e/168665/02613-SwissDwellings> was used as the working directory.
+Started at Wed Apr 29 14:17:55 2026
+Terminated at Wed Apr 29 15:23:49 2026
+Results reported at Wed Apr 29 15:23:49 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J full_jacobi_cuda
+#BSUB -q gpuv100
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 3:00
+#BSUB -o logs/full_cuda_%J.out
+#BSUB -e logs/full_cuda_%J.err
+
+# === Number of floorplans to process ===
+N=4571
+
+
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613_2026
+
+# Run, redirect CSV to file, timing goes to stderr -> .err log
+python3 -u task8.py $N > full_results_cuda_$LSB_JOBID.csv
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   3260.00 sec.
+    Max Memory :                                 16384 MB
+    Average Memory :                             13679.29 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   3954 sec.
+    Turnaround time :                            4078 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/full_cuda_28326038.err> for stderr output of this job.
+

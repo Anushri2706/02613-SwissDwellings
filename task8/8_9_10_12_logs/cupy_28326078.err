@@ -1,0 +1,8 @@
+Loaded module: cuda/11.8
+
+--- Timing (Naive Cupy) ---
+N floorplans:       2
+Total time:         9.229 s
+Mean per floorplan: 4.614 s
+Min / Max:          4.412 / 4.817 s
+Est. full dataset (4571): 21091.6 s = 351.5 min = 5.86 h

@@ -1,0 +1,62 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28323554: <jacobi_cuda> in cluster <dcc> Done
+
+Job <jacobi_cuda> was submitted from host <n-62-20-1> by user <nikry> in cluster <dcc> at Wed Apr 29 10:54:52 2026
+Job was executed on host(s) <4*n-62-11-13>, in queue <gpuv100>, as user <nikry> in cluster <dcc> at Wed Apr 29 10:57:51 2026
+</zhome/83/e/168665> was used as the home directory.
+</zhome/83/e/168665/02613-SwissDwellings> was used as the working directory.
+Started at Wed Apr 29 10:57:51 2026
+Terminated at Wed Apr 29 10:58:50 2026
+Results reported at Wed Apr 29 10:58:50 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J jacobi_cuda
+#BSUB -q gpuv100
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 0:20
+#BSUB -o logs/cuda_%J.out
+#BSUB -e logs/cuda_%J.err
+
+# === Number of floorplans to process ===
+N=40
+
+
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613_2026
+
+# Run, redirect CSV to file, timing goes to stderr -> .err log
+python3 -u task8.py $N > results_cuda_$LSB_JOBID.csv
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   56.66 sec.
+    Max Memory :                                 231 MB
+    Average Memory :                             222.33 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               16153.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   59 sec.
+    Turnaround time :                            238 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/cuda_28323554.err> for stderr output of this job.
+

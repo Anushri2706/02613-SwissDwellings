@@ -1,0 +1,62 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28324776: <jacobi_cupy> in cluster <dcc> Exited
+
+Job <jacobi_cupy> was submitted from host <n-62-20-1> by user <nikry> in cluster <dcc> at Wed Apr 29 11:31:34 2026
+Job was executed on host(s) <4*n-62-20-12>, in queue <gpuv100>, as user <nikry> in cluster <dcc> at Wed Apr 29 11:33:10 2026
+</zhome/83/e/168665> was used as the home directory.
+</zhome/83/e/168665/02613-SwissDwellings> was used as the working directory.
+Started at Wed Apr 29 11:33:10 2026
+Terminated at Wed Apr 29 11:33:14 2026
+Results reported at Wed Apr 29 11:33:14 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J jacobi_cupy
+#BSUB -q gpuv100
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 0:50
+#BSUB -o logs/cuda_%J.out
+#BSUB -e logs/cuda_%J.err
+
+# === Number of floorplans to process ===
+N=40
+
+
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613_2026
+
+# Run, redirect CSV to file, timing goes to stderr -> .err log
+python3 -u task9_cupy.py $N > results_cupy_$LSB_JOBID.csv
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1.51 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   4 sec.
+    Turnaround time :                            100 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <logs/cuda_28324776.err> for stderr output of this job.
+
